@@ -1,0 +1,100 @@
+
+       <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        {% block stylesheets %}
+               <link rel="stylesheet" href ="{{asset('css/style.css')}}">
+            <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"/>
+             
+
+             
+        {% endblock %}
+
+       
+        {% block javascripts %}
+            
+        {% endblock %}
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="{{path('home')}}">AhmedBlog</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('prog')}}">Articles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('prog_create')}}">Creer un article</a>
+        </li>
+
+
+                   <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+            </li>
+
+            <li class="nav-item">
+            <a class="text-dark text-decoration-none" href="#"><i class="bi bi-search"></i></a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        {% if app.user %}
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" >{{ app.user.nom }}  {{  app.user.prenom }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                            </li>
+                             
+
+                        {% else %}
+
+                            <li class="nav-item">
+                                <a class="nav-link"  href="{{ path('register') }}">Inscription</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            </li>
+
+
+
+                        {% endif %}
+
+
+                         </li>
+                            <li class="nav-item">
+                               <button> <a class="nav-link" href="{{path('prog_search')}}">search</a></button>
+                            </li>
+
+
+
+
+
+
+                 
+
+        </ul>
+    </div>
+  </div>
+</nav>
+  <div class="container">
+        {% block body %}{% endblock %}
+        </div>
+
+        
+    </body>
+</html>
+
+    </body>
+</html>

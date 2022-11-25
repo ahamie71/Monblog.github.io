@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogController!{% endblock %}
+
+{% block body %}
+
+<section class="articles">
+
+<!-- on va creer une boucle , pour chaque article singulier dans la tableau des  articles -->
+{% for article in articles %}
+  <article>
+  
+  <div class="card-group">
+  
+      <div class="card border-primary mb-3 " style="background-color:yellow">
+       <img src="{{article.image}}" alt="" style="width:300px">
+       <div class="card-body">
+      <h2>{{article.title}} </h2>
+      <!-- la date c'est peu particulier car created est objet datae time il n'a pas de methode pour convertir en chaine de caractère ,
+      donc pour cela nous utilisons la notion de filtre proposé par twig , qui va nous fomrmatter une variable avantde l'afficher 
+-->    
+      <div class="metadata">Ecrit le  {{article.createdAT | date('d/m/Y') }} à {{article.createdAt | date('H:i')}}  dans la catégorie politique</div>
+       <div class="centent">
+
+       
+      
+       {{ article.content | raw }}
+     <a href="{{path('prog_show',{'id':article.id}) }}" class="btn btn-primary">Les Commentaires</a>
+     </div>
+     </div>
+    
+     </article>
+
+      {% endfor %}
+
+      <style>
+
+      body{
+
+            background-color: orange !important;
+      }
+     
+     
+
+
+{% endblock %}
